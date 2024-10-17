@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light mode background and foreground */
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode background and foreground */
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  /* Use the foreground and background color variables */
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom utility class to balance text wrapping */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.markdown > * {
+  all: revert;
+  table {
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 6px 13px;
+    border: 1px solid black;
+  }
+
+  p {
+    line-height: 1.5;
+  }
+}
