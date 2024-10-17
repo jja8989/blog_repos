@@ -14,6 +14,7 @@ interface Post {
   sha: string;
   year: string; // 연도 추가
   tags: string[]; // 태그 추가
+  imageUrl: string;
 }
 
 // 게시글 삭제 요청 함수
@@ -132,11 +133,21 @@ export default function Blog() {
             <div
               key={post.slug}
               className="relative border rounded-lg shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
-              style={{ width: "90%", paddingBottom: "60%" }} // 카드 크기 조정
+              style={{
+                width: "90%",
+                paddingBottom: "60%",
+                backgroundImage: post.imageUrl
+                  ? `url(${post.imageUrl})`
+                  : "none", // 이미지 미리보기 적용
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }} // 카드 크기 조정 및 이미지 배경
               onClick={() => router.push(`/blog/${post.slug}`)} // 카드 클릭 시 해당 포스트로 이동
             >
-              <div className="absolute inset-0 p-4">
-                <h2 className="text-xl font-bold mb-2">{post.title}</h2>
+              <div className="absolute inset-0 p-4 bg-white bg-opacity-75">
+                <h2 className="text-xl font-bold mb-2">
+                  {post.title.replace(/-/g, " ")} {/* "-"를 " "로 대체 */}
+                </h2>
                 <button
                   className="absolute top-2 right-2 text-red-500"
                   onClick={(e) => {

@@ -1,5 +1,20 @@
 import { NextResponse } from "next/server";
 
+const parseImageUrl = (content: string): string | null => {
+  // Markdown 이미지 형식과 HTML <img> 태그 형식 둘 다 처리
+  const markdownImageMatch = content.match(/!\[.*?\]\((.*?)\)/);
+  if (markdownImageMatch) {
+    return markdownImageMatch[1]; // Markdown 이미지 URL 반환
+  }
+
+  const htmlImageMatch = content.match(/<img[^>]+src=["']([^"']+)["']/);
+  if (htmlImageMatch) {
+    return htmlImageMatch[1]; // HTML <img> 태그에서 이미지 URL 반환
+  }
+
+  return null; // 이미지가 없으면 null 반환
+};
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const year = searchParams.get("year");
@@ -50,7 +65,7 @@ export async function GET(request: Request) {
           const fileContentRes = await fetch(file.download_url);
           const fileContent = await fileContentRes.text();
 
-          // 여기서 파일의 메타데이터 (태그 정보 등) 파싱
+          // 태그 정보 파싱
           const tagsMatch = fileContent.match(/tags:\s*\[([^\]]+)\]/);
           const tags = tagsMatch
             ? tagsMatch[1]
@@ -58,23 +73,46 @@ export async function GET(request: Request) {
                 .map((tag) => tag.trim().replace(/['"]+/g, ""))
             : [];
 
+          // 이미지 URL 파싱
+          const imageUrl = parseImageUrl(fileContent);
+
+          // 각 파일의 커밋 정보를 가져와 작성 시간 정보 추출
+          const commitRes = await fetch(
+            `https://api.github.com/repos/jja8989/blog_repos/commits?path=post/${year}/${file.name}`,
+            {
+              headers: {
+                Authorization: `Bearer ${GITHUB_ACCESS_TOKEN}`,
+              },
+            }
+          );
+          const commitData = await commitRes.json();
+          const commitDate = commitData[0]?.commit?.author?.date || "";
+
           return {
             title: file.name.replace(".md", ""),
             slug: file.name.replace(".md", ""),
             sha: file.sha,
-            tags, // 태그 정보 포함
+            tags,
+            imageUrl,
+            commitDate, // 커밋 날짜 추가
           };
         })
     );
 
-    if (posts.length === 0) {
+    // `commitDate`를 기준으로 최신 순으로 정렬 (같은 날이면 시간 순으로 정렬)
+    const sortedPosts = posts.sort(
+      (a, b) =>
+        new Date(b.commitDate).getTime() - new Date(a.commitDate).getTime()
+    );
+
+    if (sortedPosts.length === 0) {
       return NextResponse.json(
         { message: `No posts available for year ${year}` },
         { status: 404 }
       );
     }
 
-    return NextResponse.json(posts);
+    return NextResponse.json(sortedPosts);
   } catch (error) {
     console.error("Error fetching posts:", error);
     return NextResponse.json(
