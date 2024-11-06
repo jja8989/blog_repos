@@ -25,13 +25,15 @@
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.0",
     "remark-html": "^16.0.1",
-    "styled-components": "^6.1.13"
+    "styled-components": "^6.1.13",
+    "theme-change": "^2.5.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "daisyui": "^4.12.14",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "postcss": "^8",

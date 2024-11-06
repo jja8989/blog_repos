@@ -1,3 +1,4 @@
+// app/blog/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -121,7 +122,7 @@ export default function Blog() {
 
   return (
     <Layout onFilterChange={handleFilterChange}>
-      <h1 className="text-3xl font-bold mb-8 text-center">Blog</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center">Blog Posts</h1>
 
       {/* Tags 필터링 */}
       <Tags posts={posts} onTagChange={handleTagChange} />
@@ -144,8 +145,8 @@ export default function Blog() {
               }} // 카드 크기 조정 및 이미지 배경
               onClick={() => router.push(`/blog/${post.slug}`)} // 카드 클릭 시 해당 포스트로 이동
             >
-              <div className="absolute inset-0 p-4 bg-white bg-opacity-75">
-                <h2 className="text-xl font-bold mb-2">
+              <div className="absolute inset-0 p-4 bg-neutral bg-opacity-50">
+                <h2 className="text-xl font-bold mb-2 text-base-content">
                   {post.title.replace(/-/g, " ")} {/* "-"를 " "로 대체 */}
                 </h2>
                 <button
@@ -171,10 +172,10 @@ export default function Blog() {
       {/* New Post 버튼 */}
       <Link href="/blog/new-post">
         <button
-          className="fixed bottom-4 right-4 bg-blue-500 text-white p-4 rounded-full shadow-lg z-50"
+          className="btn btn-outline btn-secondary fixed bottom-6 right-4 p-4 shadow-lg z-50"
           style={{ zIndex: 50 }}
         >
-          New Post
+          New Post ✏️
         </button>
       </Link>
     </Layout>

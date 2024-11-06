@@ -36,13 +36,13 @@ const Tags: React.FC<TagsProps> = ({ onTagChange, posts }) => {
         <button
           key={tag}
           onClick={() => handleTagClick(tag)}
-          className={`px-4 py-2 rounded-full text-sm ${
+          className={`btn px-4 py-2 rounded-full text-sm ${
             selectedTags.includes(tag)
-              ? "bg-blue-300 text-white"
-              : "bg-gray-200 hover:bg-gray-300"
+              ? "btn-primary"
+              : "btn-secondary hover:btn-accent"
           }`}
         >
-          {tag}
+          #{tag}
         </button>
       ))}
     </div>

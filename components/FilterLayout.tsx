@@ -12,8 +12,8 @@ function YearFilter({
   const [selectedYear, setSelectedYear] = useState<string>(""); // 초기값 없음
 
   return (
-    <div className="w-full p-4">
-      <h2 className="font-bold text-lg mb-4">연도 필터</h2>
+    <div className="w-full p-4 text-base-content">
+      <h2 className="font-bold text-lg mb-4">Filter: YEAR</h2>
       <ul className="space-y-2">
         {years.map((year) => (
           <li key={year}>
@@ -23,8 +23,8 @@ function YearFilter({
                 onFilterChange(year); // 연도 변경 시 필터링 동작
               }}
               className={`${
-                selectedYear === year ? "text-blue-500" : "text-black"
-              } hover:text-blue-500`}
+                selectedYear === year ? "text-primary" : "text-base-content"
+              } hover:text-accent`}
             >
               {year}
             </button>
@@ -44,7 +44,7 @@ export default function Layout({
   onFilterChange: (year: string) => void;
 }) {
   return (
-    <div className="flex flex-col min-h-screen bg-white text-black">
+    <div className="flex flex-col min-h-screen bg-base-100 text-base-content">
       <Topbar />
       <div className="flex-1 flex">
         {/* Left side (20% width) */}

@@ -14,6 +14,12 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('daisyui'),
+  ],
+  daisyui: {
+    themes: ["synthwave", "corporate", "business", "winter"], // https://daisyui.com/docs/themes/
+  },
 };
+
 export default config;

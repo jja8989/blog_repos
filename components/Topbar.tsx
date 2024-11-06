@@ -1,35 +1,30 @@
+// components/Topbar.tsx
 import Link from "next/link";
 
 const Topbar = () => {
   return (
-    <header className="bg-[#1F2938] p-4 shadow">
+    <header className="bg-primary text-primary-content p-4 shadow">
       <nav className="flex justify-between items-center px-4 md:px-10">
-        {/* VIBA button links to the home page */}
         <div className="flex">
-          <Link
-            href="/"
-            className="text-white text-xl font-bold hover:underline"
-          >
-            VIBA
+          <Link href="/" className="text-xl font-bold">
+            ViBA
           </Link>
         </div>
-
-        {/* Centered buttons */}
         <div className="flex-1 flex justify-center space-x-4">
-          <Link href="/blog" className="text-white hover:underline">
+          <Link href="/blog" className="hover:text-accent">
             Blog
           </Link>
-          <Link href="/events" className="text-white hover:underline">
+          <Link href="/events" className="hover:text-accent">
             Events
           </Link>
-          <Link href="/about" className="text-white hover:underline">
+          <Link href="/about" className="hover:text-accent">
             About Us
           </Link>
         </div>
 
         {/* Search button stays on the right */}
         <div>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+          <button className="btn btn-secondary px-4 py-2">
             Search
           </button>
         </div>
