@@ -6,7 +6,7 @@ const Topbar = () => {
     <header className="bg-primary text-primary-content p-4 shadow">
       <nav className="flex justify-between items-center px-4 md:px-10">
         <div className="flex">
-          <Link href="/" className="text-xl font-bold">
+          <Link href="/" className="text-xl font-bold hover:text-accent">
             ViBA
           </Link>
         </div>
@@ -24,7 +24,7 @@ const Topbar = () => {
 
         {/* Search button stays on the right */}
         <div>
-          <button className="btn btn-secondary px-4 py-2">
+          <button className="btn btn-secondary px-4 py-2 hover:btn-accent">
             Search
           </button>
         </div>
