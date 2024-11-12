@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import RecentPosts from "@/components/RecentPosts";
 
 export default function Home() {
   return (
@@ -8,6 +9,10 @@ export default function Home() {
         <p className="text-xl text-gray-600">
           Explore our Blog and Events for the latest updates!
         </p>
+      </section>
+
+      <section className="mb-8">
+        <RecentPosts />
       </section>
     </Layout>
   );
