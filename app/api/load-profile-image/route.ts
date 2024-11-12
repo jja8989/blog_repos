@@ -29,7 +29,7 @@ export async function GET(request: Request) {
   for (const name of imageNames) {
     try {
       const res = await fetch(
-        `https://api.github.com/repos/jja8989/viba_blog/contents/images/${encodeURIComponent(name)}`,
+        `https://api.github.com/repos/jja8989/blog_repos/contents/images/${encodeURIComponent(name)}`,
         {
           headers: {
             Authorization: `Bearer ${GITHUB_ACCESS_TOKEN}`,
