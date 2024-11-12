@@ -37,6 +37,7 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import P5Canvas from "@/components/P5Canvas";
+import RecentPosts from "@/components/RecentPosts";
 
 export default function Home() {
   const [showFirstSketch, setShowFirstSketch] = useState(true);
