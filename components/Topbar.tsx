@@ -21,7 +21,7 @@ const Topbar = () => {
             About Us
           </Link>
           <Link href="/bamboo" className="hover:text-accent">
-            Bamboo-Forest
+            .
           </Link>
         </div>
 

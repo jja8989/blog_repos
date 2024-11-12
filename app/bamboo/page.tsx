@@ -61,7 +61,7 @@ export default function CommentsBoard() {
   return (
     <Layout>
         <div className="p-8">
-            <h1 className="text-3xl font-bold mb-4">비-바 대나무숲</h1>
+            <h1 className="text-3xl font-bold mb-4">비-바ㅇ 대나무숲</h1>
 
             <div className="mb-4">
                 <input
