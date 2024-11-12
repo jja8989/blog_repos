@@ -27,7 +27,7 @@ export async function GET() {
 
     // GitHub API URL 설정 (특정 폴더에서 포스트를 가져오기)
     const response = await fetch(
-      "https://api.github.com/repos/holinessnine/viba_blog/contents/post/2024",
+      "https://api.github.com/repos/jja8989/viba_blog/contents/post/2024",
       {
         method: "GET",
         headers: {
