@@ -16,11 +16,11 @@ const P5Canvas: React.FC<P5CanvasProps> = ({ showFirstSketch }) => {
 
     const firstSketch = (p: p5) => {
       // Particle path animation sketch
-      let paths: Path[] = [];
-      let framesBetweenParticles = 5;
+      const paths: Path[] = []; // Changed from 'let' to 'const'
+      const framesBetweenParticles = 5; // Changed from 'let' to 'const'
       let nextParticleFrame = 0;
       let previousParticlePosition: p5.Vector;
-      let particleFadeFrames = 300;
+      const particleFadeFrames = 300; // Changed from 'let' to 'const'
 
       p.setup = () => {
         const width = sketchRef.current?.offsetWidth || 2460;
@@ -59,9 +59,9 @@ const P5Canvas: React.FC<P5CanvasProps> = ({ showFirstSketch }) => {
       };
 
       function createParticle() {
-        let mousePosition = p.createVector(p.mouseX, p.mouseY);
-        let velocity = p5.Vector.sub(mousePosition, previousParticlePosition).mult(0.05);
-        let lastPath = paths[paths.length - 1];
+        const mousePosition = p.createVector(p.mouseX, p.mouseY); // Changed from 'let' to 'const'
+        const velocity = p5.Vector.sub(mousePosition, previousParticlePosition).mult(0.05); // Changed from 'let' to 'const'
+        const lastPath = paths[paths.length - 1]; // Changed from 'let' to 'const'
         lastPath.addParticle(mousePosition, velocity);
         nextParticleFrame = p.frameCount + framesBetweenParticles;
         previousParticlePosition.set(p.mouseX, p.mouseY);
@@ -71,7 +71,7 @@ const P5Canvas: React.FC<P5CanvasProps> = ({ showFirstSketch }) => {
         particles: Particle[] = [];
 
         addParticle(position: p5.Vector, velocity: p5.Vector) {
-          let particleHue = (this.particles.length * 30) % 360;
+          const particleHue = (this.particles.length * 30) % 360; // Changed from 'let' to 'const'
           this.particles.push(new Particle(position, velocity, particleHue));
         }
 
@@ -93,9 +93,14 @@ const P5Canvas: React.FC<P5CanvasProps> = ({ showFirstSketch }) => {
         }
 
         connectParticles(particleA: Particle, particleB: Particle) {
-          let opacity = particleA.framesRemaining / particleFadeFrames;
+          const opacity = particleA.framesRemaining / particleFadeFrames; // Changed from 'let' to 'const'
           p.stroke(255, opacity);
-          p.line(particleA.position.x, particleA.position.y, particleB.position.x, particleB.position.y);
+          p.line(
+            particleA.position.x,
+            particleA.position.y,
+            particleB.position.x,
+            particleB.position.y
+          );
         }
       }
 
@@ -119,7 +124,7 @@ const P5Canvas: React.FC<P5CanvasProps> = ({ showFirstSketch }) => {
         }
 
         display() {
-          let opacity = this.framesRemaining / particleFadeFrames;
+          const opacity = this.framesRemaining / particleFadeFrames; // Changed from 'let' to 'const'
           p.noStroke();
           p.fill(this.hue, 80, 90, opacity);
           p.circle(this.position.x, this.position.y, 24);
@@ -131,21 +136,21 @@ const P5Canvas: React.FC<P5CanvasProps> = ({ showFirstSketch }) => {
       // Node-based animation with spring effect
       let centerX = 0.0;
       let centerY = 0.0;
-      let radius = 45;
+      const radius = 45; // Changed from 'let' to 'const'
       let rotAngle = -90;
       let accelX = 0.0;
       let accelY = 0.0;
       let deltaX = 0.0;
       let deltaY = 0.0;
-      let springing = 0.0009;
-      let damping = 0.98;
-      let nodes = 5;
-      let nodeStartX: number[] = [];
-      let nodeStartY: number[] = [];
-      let nodeX: number[] = [];
-      let nodeY: number[] = [];
-      let angle: number[] = [];
-      let frequency: number[] = [];
+      const springing = 0.0009; // Changed from 'let' to 'const'
+      const damping = 0.98; // Changed from 'let' to 'const'
+      const nodes = 5; // Changed from 'let' to 'const'
+      const nodeStartX: number[] = []; // Changed from 'let' to 'const'
+      const nodeStartY: number[] = []; // Changed from 'let' to 'const'
+      const nodeX: number[] = []; // Changed from 'let' to 'const'
+      const nodeY: number[] = []; // Changed from 'let' to 'const'
+      const angle: number[] = []; // Changed from 'let' to 'const'
+      const frequency: number[] = []; // Changed from 'let' to 'const'
       let organicConstant = 1.0;
 
       p.setup = () => {
@@ -186,7 +191,7 @@ const P5Canvas: React.FC<P5CanvasProps> = ({ showFirstSketch }) => {
         }
 
         p.curveTightness(organicConstant);
-        let shapeColor = p.lerpColor(p.color("red"), p.color("yellow"), organicConstant);
+        const shapeColor = p.lerpColor(p.color("red"), p.color("yellow"), organicConstant); // Changed from 'let' to 'const'
         p.fill(shapeColor);
 
         p.beginShape();
