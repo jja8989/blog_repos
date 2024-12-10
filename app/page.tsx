@@ -9,7 +9,7 @@ import dynamic from 'next/dynamic';
 const P5Canvas = dynamic(() => import('../components/P5Canvas'), {
   ssr: false
 });
-// import P5Canvas from "@/components/P5Canvas";
+// import P5Canvas from "@/components/P5Canvas";s
 
 export default function Home() {
   const [showFirstSketch, setShowFirstSketch] = useState(true);
