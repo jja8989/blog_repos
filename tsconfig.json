@@ -20,7 +20,9 @@
     ],
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "types": ["@types/p5"], // Add this to include p5 type definitions
+    "allowSyntheticDefaultImports": true // Ensure compatibility with ES modules
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
