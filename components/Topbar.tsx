@@ -20,6 +20,9 @@ const Topbar = () => {
           <Link href="/about" className="hover:text-accent">
             About Us
           </Link>
+          <Link href="/bamboo" className="hover:text-accent">
+            .
+          </Link>
         </div>
 
         {/* Search button stays on the right */}
