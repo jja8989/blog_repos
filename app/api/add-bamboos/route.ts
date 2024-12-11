@@ -9,7 +9,12 @@ interface Comment {
 
 export async function POST(request: Request) {
   const GITHUB_ACCESS_TOKEN = process.env.GITHUB_ACCESS_TOKEN;
-
+  if (!GITHUB_ACCESS_TOKEN) {
+    return NextResponse.json(
+      { message: 'GitHub Access Token is missing' },
+      { status: 500 }
+    );
+  }
   try {
     // 요청 본문에서 username과 content를 추출
     const { username, content } = await request.json();

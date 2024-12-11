@@ -15,8 +15,11 @@ export default function CommentsBoard() {
     const fetchComments = async () => {
       try {
         const response = await fetch('/api/get-bamboos');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch comments: ${response.statusText}`);
+        }
         const data = await response.json();
-        console.log('Fetched comments:', data); // 로그 추가
+        console.log('Fetched comments:', data); // 디버깅 로그
         const comments = data.comments || [];
         setComments(comments);
       } catch (error) {
@@ -37,7 +40,10 @@ export default function CommentsBoard() {
           body: JSON.stringify({ username, content }),
         });
         if (response.ok) {
-          setComments([{ id: comments.length + 1, username, content, timestamp: new Date().toISOString() }, ...comments]);
+          // 서버에서 업데이트된 데이터를 다시 가져옴
+          const fetchResponse = await fetch('/api/get-bamboos');
+          const fetchData = await fetchResponse.json();
+          setComments(fetchData.comments || []);
           setUsername('');
           setContent('');
         } else {
