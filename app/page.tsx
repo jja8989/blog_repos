@@ -41,7 +41,7 @@ export default function Home() {
           onClick={() => window.open("https://vibalab.org", "_blank")}
           className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition w-60"
         >
-          연구실 홈페이지(짭)
+          연구실 홈페이지
         </button>
       </section>
 
